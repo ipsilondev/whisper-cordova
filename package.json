@@ -1,0 +1,44 @@
+{
+    "name": "whisper-cordova",
+    "version": "0.1.0",
+    "cordova": {
+        "id": "whisper-cordova",
+        "platforms": [
+            "ios",
+            "android"
+        ]
+    },
+    "description": "Use of whisper for mobile",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ipsilondev/whisper-cordova"
+    },
+    "issue": "https://github.com/ipsilondev/whisper-cordova/issues",
+    "keywords": [
+        "image",
+        "photo library",
+        "camera roll",
+        "ionic",
+        "cordova",
+        "ecosystem:cordova",
+        "cordova-ios",
+        "cordova-android"
+    ],
+    "engines": {
+        "cordovaDependencies": {
+            "3.0.0": {
+                "cordova-android": ">=6.3.0"
+            },
+            "4.0.0": {
+                "cordova": ">100"
+            }
+        }
+    },
+    "author": {
+        "name": "Ipsilon Developments Inc.",
+        "email": "info@ipsilondev.com",
+        "url": "http://www.ipsilondev.com"
+    },
+    "license": "MIT",
+    "homepage": "https://github.com/ipsilondev/whisper-cordova#readme"
+}
