@@ -29,7 +29,7 @@
                 <param name="android-package" value="com.ipsilondev.whispercordova.DecodeChunkAudio"/>
             </feature>
         </config-file>
-        <source-file src="src/android/WhisperCordova.java" target-dir="src/com/ipsilondev/whispercordova"/>
+        <source-file src="android/WhisperCordova.java" target-dir="com/ipsilondev/whispercordova"/>
         <framework src="android/build.gradle" custom="true" type="gradleReference" />
     </platform>
 
@@ -42,8 +42,8 @@
             </feature>
         </config-file>
 
-        <header-file src="src/ios/WhisperCordova.h"/>
-        <source-file src="src/ios/WhisperCordova.m" compiler-flags="-fno-objc-arc"/>
+        <header-file src="ios/WhisperCordova.h"/>
+        <source-file src="ios/WhisperCordova.m" compiler-flags="-fno-objc-arc"/>
     </platform>
 
 </plugin>
