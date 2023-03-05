@@ -6,6 +6,7 @@
 
 #define DR_WAV_IMPLEMENTATION
 #include "dr_wav.h"
+#define DR_MP3_IMPLEMENTATION
 #include "dr_mp3.h"
 
 int golden_generated_ids[21] = {50257,50362,1770,13,2264,346,353,318,262,46329,286,262,3504,6097,11,290,356,389,9675,284,7062};

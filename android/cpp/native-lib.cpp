@@ -172,7 +172,7 @@ Java_com_whisper_android_tflitecpp_MainActivity_loadModelJNI(
             drmp3 mp3;
             size_t audio_dataSize=0;
             char* audio_buffer = nullptr;
-            char *s = strstr(pcmfilename, ".mp3");
+            const char *s = strstr(pcmfilename, ".mp3");
             if (s != NULL) {
               if (!drmp3_init_file(&mp3,
                                    pcmfilename,
@@ -183,12 +183,12 @@ Java_com_whisper_android_tflitecpp_MainActivity_loadModelJNI(
                   return result;
               }
               //int n = mp3.totalPCMFrameCount;
-              uint64 indexPCM = floor(WHISPER_SAMPLE_RATE * fromTime);
+              drmp3_uint64 indexPCM = floor(WHISPER_SAMPLE_RATE * fromTime);
               int n = WHISPER_SAMPLE_RATE * WHISPER_CHUNK_SIZE;
 
               std::vector<int16_t> pcm16;
               pcm16.resize(n*mp3.channels);
-              drwav_seek_to_pcm_frame(&mp3, indexPCM);
+              drmp3_seek_to_pcm_frame(&mp3, indexPCM);
               drmp3_read_pcm_frames_s16(&mp3, n, pcm16.data());
               drmp3_uninit(&mp3);
               // convert to mono, float
@@ -212,7 +212,7 @@ Java_com_whisper_android_tflitecpp_MainActivity_loadModelJNI(
                     return result;
                 }
                 //int n = wav.totalPCMFrameCount;
-                uint64 indexPCM = floor(WHISPER_SAMPLE_RATE * fromTime);
+                drmp3_uint64 indexPCM = floor(WHISPER_SAMPLE_RATE * fromTime);
                 int n = WHISPER_SAMPLE_RATE * WHISPER_CHUNK_SIZE;
                 std::vector<int16_t> pcm16;
                 pcm16.resize(n*wav.channels);
