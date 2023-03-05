@@ -75,7 +75,7 @@ Java_com_whisper_android_tflitecpp_MainActivity_loadModelJNI(
         }
 
         //Load filters and vocab data from preg enerated filters_vocab_gen.bin file
-        const char *vocab_filename = "filters_vocab_gen.bin";
+        const char *vocab_filename = "filters_vocab_multilingual.bin";
 
 
         if (!(env->IsSameObject(assetManager, NULL))) {
