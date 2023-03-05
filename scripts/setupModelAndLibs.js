@@ -1,4 +1,3 @@
-import type { Context } from 'cordova-ts-hook'
 const fs = require('fs');
 
 
@@ -35,7 +34,7 @@ function copyFolderRecursiveSync( source, target ) {
 }
 
 module.exports = function (context) => {
-  if (ctx.opts.cordova.platforms.includes('ios')) {
+  if (context.opts.cordova.platforms.includes('ios')) {
     setupModelAndLibsiOS(context)
   } else {
     setupModelAndLibsAndroid(context)
