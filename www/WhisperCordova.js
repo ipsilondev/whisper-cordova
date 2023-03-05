@@ -1,3 +1,4 @@
+cordova.define("whisper-cordova.WhisperCordova", function(require, exports, module) {
 var WhisperCordova = function () {
 };
 
@@ -25,3 +26,5 @@ WhisperCordova.DecodeChunkAudio = function (localImagePath, isBase64, fromTime, 
 };
 
 module.exports = WhisperCordova;
+
+});

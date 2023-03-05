@@ -28,15 +28,14 @@ import android.util.Log;
 /**
  * The SaveImage class offers a method saving an image to the devices' media gallery.
  */
-public class DecodeChunkAudio extends CordovaPlugin {
+public class WhisperCordova extends CordovaPlugin {
     public static final int WRITE_PERM_REQUEST_CODE = 1;
     private final String ACTION = "decodeChunkAudio";
     private final String WRITE_EXTERNAL_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE;
     private CallbackContext callbackContext;
     private String filePath;
     private int isBase64 = 0;
-    private String fromTime = "0";
-    private String toTime = "30.0";
+    private float fromTime = 0;
 
 static {
   System.loadLibrary("native-lib");
@@ -45,7 +44,7 @@ static {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals(ACTION)) {
-            saveImageToGallery(args, callbackContext);
+            decodeChunkAudio(args, callbackContext);
             return true;
         } else {
             return false;
@@ -71,8 +70,7 @@ static {
     private void decodeChunkAudio(JSONArray args, CallbackContext callback) throws JSONException {
     	this.filePath = args.getString(0);
       this.isBase64 = args.getInt(1);
-      this.fromTime = args.getString(2);
-      this.toTime = args.getString(3);
+      this.fromTime = Float.parseFloat(args.getString(2));
     	this.callbackContext = callback;
         Log.d("DecodeChunkAudio", "DecodeChunkAudio in filePath: " + filePath);
 
@@ -82,10 +80,10 @@ static {
         }
 
         if (PermissionHelper.hasPermission(this, WRITE_EXTERNAL_STORAGE)) {
-        	Log.d("SaveImage", "Permissions already granted, or Android version is lower than 6");
-        	loadModelJNI(getAssets(), this.filePath, this.isBase64, this.fromTime, this.toTime);
+        	Log.d("whispercordova", "Permissions already granted, or Android version is lower than 6");
+        	loadModelJNI(this.cordova.getActivity().getApplicationContext().getAssets(), this.filePath, this.isBase64, this.fromTime);
         } else {
-        	Log.d("SaveImage", "Requesting permissions for WRITE_EXTERNAL_STORAGE");
+        	Log.d("whispercordova", "Requesting permissions for WRITE_EXTERNAL_STORAGE");
         	PermissionHelper.requestPermission(this, WRITE_PERM_REQUEST_CODE, WRITE_EXTERNAL_STORAGE);
         }
     }
@@ -101,7 +99,7 @@ static {
         // destination gallery folder - external storage
         File dstGalleryFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
 
-        Log.d("SaveImage", "SaveImage dstGalleryFolder: " + dstGalleryFolder);
+        Log.d("whispercordova", "SaveImage dstGalleryFolder: " + dstGalleryFolder);
 
         try {
             // Create export file in destination folder (gallery)
