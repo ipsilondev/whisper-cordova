@@ -33,7 +33,7 @@ function copyFolderRecursiveSync( source, target ) {
     }
 }
 
-module.exports = function (context) => {
+module.exports = function (context) {
   if (context.opts.cordova.platforms.includes('ios')) {
     setupModelAndLibsiOS(context)
   } else {
