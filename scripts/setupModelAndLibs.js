@@ -1,5 +1,5 @@
 const fs = require('fs');
-
+const path = require("path");
 
 function setupModelAndLibsAndroid(ctx) {
       copyFolderRecursiveSync(__dirname.replace("scripts","") + "android/cpp", ctx.opts + "android/app");
