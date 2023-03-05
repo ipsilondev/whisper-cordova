@@ -2,13 +2,12 @@ import type { Context } from 'cordova-ts-hook'
 const fs = require('fs');
 
 
-async function setupModelAndLibsAndroid(ctx) {
-      ctx.opts
+function setupModelAndLibsAndroid(ctx) {
       copyFolderRecursiveSync(__dirname.replace("scripts","") + "android/cpp", ctx.opts + "android/app");
       copyFolderRecursiveSync(__dirname.replace("scripts","") + "model", ctx.opts + "android/app");
 }
 
-async function setupModelAndLibsiOS(ctx) {
+function setupModelAndLibsiOS(ctx) {
 
 }
 
@@ -35,10 +34,10 @@ function copyFolderRecursiveSync( source, target ) {
     }
 }
 
-export = async (context: Context) => {
+module.exports = function (context) => {
   if (ctx.opts.cordova.platforms.includes('ios')) {
-    await setupModelAndLibsiOS(context)
+    setupModelAndLibsiOS(context)
   } else {
-    await setupModelAndLibsAndroid(context)
+    setupModelAndLibsAndroid(context)
   }
 }
