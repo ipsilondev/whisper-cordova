@@ -2,9 +2,8 @@ const fs = require('fs');
 const path = require("path");
 
 function setupModelAndLibsAndroid(ctx) {
-      console.log(ctx.opts);
-      copyFolderRecursiveSync(path.join(__dirname.replace("scripts",""), "android/cpp"), path.join(ctx.opts, "android/app"));
-      copyFolderRecursiveSync(path.join(__dirname.replace("scripts",""), "model"), path.join(ctx.opts, "android/app"));
+      copyFolderRecursiveSync(path.join(__dirname.replace("scripts",""), "android/cpp"), path.join(ctx.opts.projectRoot, "android/app"));
+      copyFolderRecursiveSync(path.join(__dirname.replace("scripts",""), "model"), path.join(ctx.opts.projectRoot, "android/app"));
 }
 
 function setupModelAndLibsiOS(ctx) {
