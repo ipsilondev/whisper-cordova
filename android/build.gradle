@@ -15,7 +15,7 @@ android {
     }
     sourceSets {
         main {
-            assets.srcDirs = ["model"]
+            assets.srcDirs += ["model"]
         }
     }
     externalNativeBuild {
