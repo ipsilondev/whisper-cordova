@@ -1,8 +1,8 @@
-cordova.define("whisper-cordova.WhisperCordova", function(require, exports, module) {
-var WhisperCordova = function () {
-};
+var exec = require("cordova/exec");
+var PLUGIN_NAME = "WhisperCordova";
 
-WhisperCordova.DecodeChunkAudio = function (localImagePath, isBase64, fromTime, successCallback, failureCallback) {
+module.exports = {
+DecodeChunkAudio: function (localImagePath, isBase64, fromTime, successCallback, failureCallback) {
     if (typeof successCallback != 'function') {
         throw new Error('DecodeChunkAudio Error: successCallback is not a function');
     }
@@ -14,17 +14,13 @@ WhisperCordova.DecodeChunkAudio = function (localImagePath, isBase64, fromTime, 
     localImagePath = localImagePath.split(',')[1];
 	   }
 
-    return cordova.exec(
-        successCallback, failureCallback, 'WhisperCordova', 'decodeChunkAudio', [_getLocalImagePathWithoutPrefix(), isBase64, fromTime]);
-
-    function _getLocalImagePathWithoutPrefix() {
+    return exec(
+        successCallback, failureCallback, 'WhisperCordova', 'decodeChunkAudio', [this._getLocalImagePathWithoutPrefix(), isBase64, fromTime]);
+    },
+     _getLocalImagePathWithoutPrefix: function() {
         if (localImagePath.indexOf('file:///') === 0) {
             return localImagePath.substring(7);
         }
         return localImagePath;
     }
 };
-
-module.exports = WhisperCordova;
-
-});
