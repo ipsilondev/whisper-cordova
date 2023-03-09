@@ -21,7 +21,7 @@
   }
 
 extern "C" JNIEXPORT jint JNICALL
-Java_com_whisper_android_tflitecpp_MainActivity_freeModelJNI(
+Java_com_ipsilondev_whispercordova_WhisperCordova_freeModelJNI(
         JNIEnv* env,
         jobject /* this */) {
     if(g_whisper_tflite_params.buffer){
@@ -39,7 +39,7 @@ Java_com_whisper_android_tflitecpp_MainActivity_freeModelJNI(
 // Credit to https://github.com/ValYouW/crossplatform-tflite-object-detecion
 // Credit to https://github.com/cuongvng/TF-Lite-Cpp-API-for-Android
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_whisper_android_tflitecpp_MainActivity_loadModelJNI(
+Java_com_ipsilondev_whispercordova_WhisperCordova_loadModelJNI(
         JNIEnv* env,
         jobject /* this */,
         jobject assetManager,
