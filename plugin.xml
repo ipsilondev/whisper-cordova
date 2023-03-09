@@ -21,7 +21,7 @@
     <hook type="before_compile" src="scripts/setupModelAndLibs.js" />
 
     <js-module src="www/WhisperCordova.js" name="WhisperCordova">
-        <clobbers target="cordova.plugins.whispercordova"/>
+        <clobbers target="whispercordova"/>
     </js-module>
 
     <!-- android -->
