@@ -15,7 +15,7 @@ DecodeChunkAudio: function (localImagePath, isBase64, fromTime, successCallback,
 	   }
 
     return exec(
-        successCallback, failureCallback, 'WhisperCordova', 'decodeChunkAudio', [this._getLocalImagePathWithoutPrefix(localImagePath), isBase64, fromTime]);
+        successCallback, failureCallback, 'WhisperCordova', 'decodeChunkAudio', [this._getLocalImagePathWithoutPrefix(localImagePath), (isBase64==true? 1 : 0), fromTime]);
     },
      _getLocalImagePathWithoutPrefix: function(localImagePath) {
         if (localImagePath.indexOf('file:///') === 0) {

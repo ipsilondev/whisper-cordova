@@ -37,12 +37,15 @@ public class WhisperCordova extends CordovaPlugin {
     private int isBase64 = 0;
     private float fromTime = 0;
 
-static {
-  System.loadLibrary("native-lib");
-}
+    static {
+      Log.d("whispercordova", "trying to load static lib");
+      System.loadLibrary("native-lib");
+      Log.d("whispercordova", "done load static lib");
+    }
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+      Log.d("whispercordova", "execute function");
         if (action.equals(ACTION)) {
             decodeChunkAudio(args, callbackContext);
             return true;
@@ -68,11 +71,15 @@ static {
      * args[0] filePath         file path string to image file to be saved to gallery
      */
     private void decodeChunkAudio(JSONArray args, CallbackContext callback) throws JSONException {
+      Log.d("whispercordova", "executing decodeChunkAudio");
     	this.filePath = args.getString(0);
+      Log.d("whispercordova", "executing decodeChunkAudio 1");
       this.isBase64 = args.getInt(1);
+      Log.d("whispercordova", "executing decodeChunkAudio 2");
       this.fromTime = Float.parseFloat(args.getString(2));
+      Log.d("whispercordova", "executing decodeChunkAudio 3");
     	this.callbackContext = callback;
-        Log.d("DecodeChunkAudio", "DecodeChunkAudio in filePath: " + filePath);
+        Log.d("whispercordova", "DecodeChunkAudio in filePath: " + filePath);
 
         if (filePath == null || filePath.equals("")) {
         	callback.error("Missing filePath variable");
@@ -94,7 +101,7 @@ static {
 	public void onRequestPermissionResult(int requestCode, String[] permissions, int[] grantResults) throws JSONException {
 		for (int r : grantResults) {
 			if (r == PackageManager.PERMISSION_DENIED) {
-				Log.d("SaveImage", "Permission not granted by the user");
+				Log.d("whispercordova", "Permission not granted by the user");
 				callbackContext.error("Permissions denied");
 				return;
 			}
@@ -102,7 +109,7 @@ static {
 
 		switch (requestCode) {
 		case WRITE_PERM_REQUEST_CODE:
-			Log.d("SaveImage", "User granted the permission for WRITE_EXTERNAL_STORAGE");
+			Log.d("whispercordova", "User granted the permission for WRITE_EXTERNAL_STORAGE");
 			loadModelJNI(this.cordova.getActivity().getApplicationContext().getAssets(), this.filePath, this.isBase64, this.fromTime);
 			break;
 		}
